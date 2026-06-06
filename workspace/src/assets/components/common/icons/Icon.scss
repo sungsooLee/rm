@@ -1,0 +1,28 @@
+.svg_icon {
+  vertical-align: top;
+
+  &.xs {
+    width: 16px;
+    height: 16px;
+  }
+
+  &.sm {
+    width: 18px;
+    height: 18px;
+  }
+
+  &.md {
+    width: 24px;
+    height: 24px;
+  }
+
+  &.lg {
+    width: 32px;
+    height: 32px;
+  }
+
+  &.xl {
+    width: 48px;
+    height: 48px;
+  }
+}
