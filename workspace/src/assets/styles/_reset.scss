@@ -1,6 +1,18 @@
-/* 기본 reset */
-* {
+html,
+body {
+  font-family: "Pretendard", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+svg path,
+svg circle,
+svg line {
+  vector-effect: non-scaling-stroke;
 }
