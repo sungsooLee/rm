@@ -1,12 +1,13 @@
 import React, { useState, useRef } from "react";
+import "./SearchBox.scss";
 import { Button } from "../../common/button/Button";
 import { Icon } from "../../icons/Icon";
 
-export default function SearchBox({
-  className = "",
+export const SearchBox = ({
+  className,
   placeholder = "무엇이든 질문해보세요.",
   onSubmit,
-}) {
+}) => {
   const [value, setValue] = useState("");
   const textareaRef = useRef(null);
 
@@ -31,11 +32,10 @@ export default function SearchBox({
   const handleSubmit = (e) => {
     e.preventDefault();
     const question = value.trim();
+
     if (!question) return;
 
-    if (onSubmit) {
-      onSubmit(question);
-    }
+    onSubmit?.(question);
     setValue("");
 
     if (textareaRef.current) {
@@ -44,8 +44,11 @@ export default function SearchBox({
   };
 
   return (
-    <form className={`search-box ${className}`} onSubmit={handleSubmit}>
-      <div className="search-area">
+    <form
+      className={`search_box ${className ?? ""}`.trim()}
+      onSubmit={handleSubmit}
+    >
+      <div className="search_area">
         <textarea
           ref={textareaRef}
           value={value}
@@ -55,10 +58,10 @@ export default function SearchBox({
         />
       </div>
 
-      <div className="btn-area">
+      <div className="btn_area">
         {value && (
           <Button
-            className="btn-clear"
+            className="btn_clear"
             variant="normal"
             type="button"
             onClick={handleClear}
@@ -69,7 +72,7 @@ export default function SearchBox({
         )}
 
         <Button
-          className="btn-submit"
+          className="btn_submit"
           variant="normal"
           type="submit"
           size="large"
@@ -81,4 +84,6 @@ export default function SearchBox({
       </div>
     </form>
   );
-}
+};
+
+export default SearchBox;
