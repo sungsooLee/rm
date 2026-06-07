@@ -7,6 +7,7 @@ import ButtonGuide from "./ButtonGuide";
 import RadioGuide from "./RadioGuide";
 import CheckboxGuide from "./CheckboxGuide";
 import TabGuide from "./TabGuide";
+import SearchboxGuide from "./SearchBoxGuide";
 // import ToggleButton from "./toggle-button";
 // import Form from "./form";
 // import Icon from "./icon";
@@ -28,6 +29,7 @@ const guideList = [
   { key: "radio", label: "Radio", component: RadioGuide },
   { key: "checkbox", label: "Checkbox", component: CheckboxGuide },
   { key: "tab", label: "Tab", component: TabGuide },
+  { key: "searchbox", label: "Searchbox", component: SearchboxGuide },
   //   { key: "toggle", label: "ToggleButton", component: ToggleButton },
   //   { key: "icons", label: "Icons", component: Icon },
   //   { key: "form", label: "Form", component: Form },

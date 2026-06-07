@@ -9,38 +9,27 @@ const sizeMap = {
   xl: 48,
 };
 
-/**
- * Icon Component
- *
- * Props:
- * - name: 아이콘 이름 (iconMap에 등록된 키)
- * - size: "xs" | "sm" | "md" | "lg" | "xl"
- * - fillColor: 아이콘 색상 (기본 currentColor)
- * - strokeColor: 외곽선 색상 (기본 currentColor)
- * - className: 추가 클래스명
- */
-export default function Icon({
-  name,
-  size = "md",
-  fillColor = "currentColor",
-  strokeColor = "currentColor",
-  className = "",
-}) {
-  const SvgIcon = iconMap[name];
+export const Icon = ({ name, size = "md", className = "" }) => {
+  const iconSrc = iconMap[name];
   const iconSize = sizeMap[size];
 
-  if (!SvgIcon) {
-    console.warn(`Icon "${name}" not found in assets/icons`);
+  if (!iconSrc) {
+    console.warn(
+      `Icon "${name}"을/를 assets/icons 폴더 내에서 찾을 수 없습니다.`,
+    );
     return null;
   }
 
+  // 💡 복잡한 스타일링 없이 SVG 파일 원본 구조 그대로 노출하는 img 태그 방식
   return (
-    <SvgIcon
+    <img
+      src={iconSrc}
+      alt={name}
       width={iconSize}
       height={iconSize}
-      style={{ color: fillColor }}
-      stroke={strokeColor}
-      className={`svg-icon ${size} ${className}`}
+      className={`svg-icon ${size} ${className}`.trim()}
     />
   );
-}
+};
+
+export default Icon;

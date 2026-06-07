@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./SearchBox.scss";
 import { Button } from "../../common/button/Button";
-import { Icon } from "../../icons/Icon";
+import { Icon } from "../../common/icons/Icon";
 
 export const SearchBox = ({
   className,
@@ -67,7 +67,7 @@ export const SearchBox = ({
             onClick={handleClear}
             aria-label="입력 내용 삭제"
           >
-            <Icon name="ic_btn_clear" size="md" strokeColor="none" />
+            <Icon name="ic_btn_clear" size="md" />
           </Button>
         )}
 
@@ -79,7 +79,7 @@ export const SearchBox = ({
           disabled={!value.trim()}
           aria-label="질문 전송"
         >
-          <Icon name="ic_btn_submit" size="xl" strokeColor="none" />
+          <Icon name="ic_btn_submit" size="xl" />
         </Button>
       </div>
     </form>
