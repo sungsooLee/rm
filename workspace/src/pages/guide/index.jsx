@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import "./index.scss";
 
 // 컴포넌트 임포트
-import ButtonGuide from "./buttonGuide";
+import ButtonGuide from "./ButtonGuide";
+import RadioGuide from "./RadioGuide";
 // import ToggleButton from "./toggle-button";
 // import Form from "./form";
 // import Icon from "./icon";
@@ -22,6 +23,7 @@ import ButtonGuide from "./buttonGuide";
 
 const guideList = [
   { key: "button", label: "Button", component: ButtonGuide },
+  { key: "radio", label: "Radio", component: RadioGuide },
   //   { key: "toggle", label: "ToggleButton", component: ToggleButton },
   //   { key: "icons", label: "Icons", component: Icon },
   //   { key: "form", label: "Form", component: Form },
