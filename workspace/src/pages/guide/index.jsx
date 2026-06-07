@@ -5,6 +5,8 @@ import "./index.scss";
 // 컴포넌트 임포트
 import ButtonGuide from "./ButtonGuide";
 import RadioGuide from "./RadioGuide";
+import CheckboxGuide from "./CheckboxGuide";
+import TabGuide from "./TabGuide";
 // import ToggleButton from "./toggle-button";
 // import Form from "./form";
 // import Icon from "./icon";
@@ -24,6 +26,8 @@ import RadioGuide from "./RadioGuide";
 const guideList = [
   { key: "button", label: "Button", component: ButtonGuide },
   { key: "radio", label: "Radio", component: RadioGuide },
+  { key: "checkbox", label: "Checkbox", component: CheckboxGuide },
+  { key: "tab", label: "Tab", component: TabGuide },
   //   { key: "toggle", label: "ToggleButton", component: ToggleButton },
   //   { key: "icons", label: "Icons", component: Icon },
   //   { key: "form", label: "Form", component: Form },

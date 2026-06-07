@@ -1,20 +1,32 @@
 import React, { useId, useState } from "react";
 import "./Radio.scss";
 
-// 1. RadioGroup 컴포넌트 명시적 export
 export const RadioGroup = ({
-  children,
+  options = [],
   direction = "horizontal",
+  name,
+  value,
+  onChange,
+  disabled = false,
   className = "",
 }) => {
   return (
     <div className={`radio_group dir_${direction} ${className}`.trim()}>
-      {children}
+      {options.map((option, index) => (
+        <Radio
+          key={option.value}
+          name={name}
+          value={option.value}
+          label={option.label}
+          checked={value === option.value}
+          onChange={onChange}
+          disabled={option.disabled || disabled}
+        />
+      ))}
     </div>
   );
 };
 
-// 2. Radio 컴포넌트 명시적 export
 export const Radio = ({
   label,
   name,
