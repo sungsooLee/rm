@@ -1,6 +1,7 @@
 .btn {
   border-radius: var(--radius-sm);
   &.primary {
+    color: var(--color-white);
     border-color: #292b2f;
     background-color: #292b2f;
   }
