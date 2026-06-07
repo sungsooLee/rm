@@ -1,5 +1,13 @@
-import React from "react";
-import { iconMap } from "./index";
+import React, { useState, useEffect } from "react";
+
+const requireContext = require.context("../../../icons", false, /\.svg$/);
+
+export const iconMap = {};
+requireContext.keys().forEach((filename) => {
+  const name = filename.replace(/^\.\//, "").replace(/\.svg$/, "");
+  const mod = requireContext(filename);
+  iconMap[name] = mod.default || mod;
+});
 
 const sizeMap = {
   xs: 16,
@@ -9,25 +17,58 @@ const sizeMap = {
   xl: 48,
 };
 
-export const Icon = ({ name, size = "md", className = "" }) => {
+export const Icon = ({
+  name,
+  size = "md",
+  className = "",
+  fillColor, // 💡 기본값 삭제 (undefined일 때 로직 타지 않음)
+  strokeColor, // 💡 기본값 삭제
+  ...props
+}) => {
   const iconSrc = iconMap[name];
   const iconSize = sizeMap[size];
+  const [svgContent, setSvgContent] = useState("");
 
-  if (!iconSrc) {
-    console.warn(
-      `Icon "${name}"을/를 assets/icons 폴더 내에서 찾을 수 없습니다.`,
-    );
-    return null;
-  }
+  useEffect(() => {
+    if (!iconSrc) return;
 
-  // 💡 복잡한 스타일링 없이 SVG 파일 원본 구조 그대로 노출하는 img 태그 방식
+    fetch(iconSrc)
+      .then((res) => res.text())
+      .then((rawText) => {
+        let processedSvg = rawText
+          .replace(/width="[^"\r\n]*"/i, `width="${iconSize}"`)
+          .replace(/height="[^"\r\n]*"/i, `height="${iconSize}"`);
+
+        // 💡 props로 전달된 경우에만 치환 수행
+        if (fillColor) {
+          processedSvg = processedSvg.replace(
+            /fill="[^"\r\n]*"/gi,
+            `fill="${fillColor}"`,
+          );
+        }
+        if (strokeColor) {
+          processedSvg = processedSvg.replace(
+            /stroke="[^"\r\n]*"/gi,
+            `stroke="${strokeColor}"`,
+          );
+        }
+
+        setSvgContent(processedSvg);
+      });
+  }, [iconSrc, iconSize, fillColor, strokeColor]);
+
+  if (!iconSrc) return null;
+
   return (
-    <img
-      src={iconSrc}
-      alt={name}
-      width={iconSize}
-      height={iconSize}
-      className={`svg-icon ${size} ${className}`.trim()}
+    <span
+      className={`icon_wrap ${size} ${className}`.trim()}
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+      dangerouslySetInnerHTML={svgContent ? { __html: svgContent } : undefined}
+      {...props}
     />
   );
 };
