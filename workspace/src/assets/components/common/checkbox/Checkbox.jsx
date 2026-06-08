@@ -75,7 +75,17 @@ export const Checkbox = ({
           onChange={handleChange}
         />
         <span className="box" aria-hidden="true">
-          <span className="icon" />
+          <span className="icon">
+            <svg viewBox="0 0 12 10" fill="none">
+              <path
+                d="M1 5L4.5 8.5L11 1"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
         </span>
         {label && <span className="label">{label}</span>}
       </label>

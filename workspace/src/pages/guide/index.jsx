@@ -9,6 +9,7 @@ import CheckboxGuide from "./CheckboxGuide";
 import TabGuide from "./TabGuide";
 import IconGuide from "./IconGuide";
 import SearchboxGuide from "./SearchBoxGuide";
+import PopupGuide from "./PopupGuide";
 // import ToggleButton from "./toggle-button";
 // import Form from "./form";
 // import Icon from "./icon";
@@ -32,6 +33,7 @@ const guideList = [
   { key: "tab", label: "Tab", component: TabGuide },
   { key: "icon", label: "Icon", component: IconGuide },
   { key: "searchbox", label: "Searchbox", component: SearchboxGuide },
+  { key: "popup", label: "Popup", component: PopupGuide },
   //   { key: "toggle", label: "ToggleButton", component: ToggleButton },
   //   { key: "icons", label: "Icons", component: Icon },
   //   { key: "form", label: "Form", component: Form },
