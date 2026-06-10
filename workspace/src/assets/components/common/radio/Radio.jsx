@@ -1,26 +1,42 @@
 import React, { useId, useState } from "react";
 import "./Radio.scss";
 
+const getInitialValue = (options) =>
+  options.find((option) => option.checked)?.value ?? "";
+
 export const RadioGroup = ({
   options = [],
-  direction = "horizontal",
   name,
   value,
   onChange,
-  disabled = false,
   className = "",
 }) => {
+  const generatedName = useId();
+  const groupName = name ?? generatedName;
+  const isControlled = onChange !== undefined;
+  const [internalValue, setInternalValue] = useState(() =>
+    getInitialValue(options),
+  );
+  const groupValue = isControlled ? (value ?? "") : internalValue;
+  const handleGroupChange = (itemValue) => {
+    if (isControlled) {
+      onChange(itemValue);
+    } else {
+      setInternalValue(itemValue);
+    }
+  };
+
   return (
-    <div className={`radio_group dir_${direction} ${className}`.trim()}>
-      {options.map((option, index) => (
+    <div className={`radio_group ${className}`.trim()}>
+      {options.map((option) => (
         <Radio
           key={option.value}
-          name={name}
+          name={groupName}
           value={option.value}
           label={option.label}
-          checked={value === option.value}
-          onChange={onChange}
-          disabled={option.disabled || disabled}
+          checked={groupValue === option.value}
+          onChange={handleGroupChange}
+          disabled={option.disabled}
         />
       ))}
     </div>
@@ -39,9 +55,9 @@ export const Radio = ({
 }) => {
   const generatedId = useId();
   const inputId = id ?? generatedId;
-  const [internalChecked, setInternalChecked] = useState(false);
-  const isControlled = checked !== undefined;
-  const isChecked = isControlled ? checked : internalChecked;
+  const isControlled = onChange !== undefined;
+  const [internalChecked, setInternalChecked] = useState(() => checked ?? false);
+  const isChecked = isControlled ? (checked ?? false) : internalChecked;
 
   const handleChange = (event) => {
     if (!event.target.checked) return;
