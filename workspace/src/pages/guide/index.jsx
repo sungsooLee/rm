@@ -12,6 +12,7 @@ import SearchboxGuide from "./SearchBoxGuide";
 import PopupGuide from "./PopupGuide";
 import ToastGuide from "./ToastGuide";
 import ResizableGuide from "./ResizableGuide";
+import TableGuide from "./TableGuide";
 // import ToggleButton from "./toggle-button";
 // import Form from "./form";
 // import Icon from "./icon";
@@ -38,6 +39,7 @@ const guideList = [
   { key: "popup", label: "Popup", component: PopupGuide },
   { key: "toast", label: "Toast", component: ToastGuide },
   { key: "resizable", label: "Resizable", component: ResizableGuide },
+  { key: "table", label: "Table", component: TableGuide },
   //   { key: "toggle", label: "ToggleButton", component: ToggleButton },
   //   { key: "icons", label: "Icons", component: Icon },
   //   { key: "form", label: "Form", component: Form },
