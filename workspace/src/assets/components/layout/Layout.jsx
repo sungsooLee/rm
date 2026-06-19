@@ -1,90 +1,133 @@
 import React, { useState } from "react";
-import Header from "./header";
-import Footer from "./footer";
+import { Link } from "react-router-dom";
+
+import Header from "./header/Header";
+import Footer from "./footer/Footer";
 import { Button } from "../common/button/Button";
-import { Icon } from "../icons/Icon";
-import "./layout.scss";
+import { Icon } from "../common/icons/Icon";
 
 const Layout = ({
-  hasAside = false,
-  hasFooter = true,
-  asideMenuItems = [],
-  asideActiveMenuIndex = 0,
+  headerProps = {},
+  lnbProps = {},
+  footerProps = {},
   children,
 }) => {
-  const [isAsideOpen, setIsAsideOpen] = useState(true);
+  const [isLnbOpen, setIsLnbOpen] = useState(true);
+
+  const {
+    headerTitle = "",
+    hasAlarm = false,
+    notificationCount = 0,
+    className: headerClassName = "",
+  } = headerProps;
+
+  const {
+    hasLnb = true,
+    hideToggleButton = true,
+    menuItems = [],
+    activeMenuIndex = 0,
+    quickTitle = "전문가 시스템 바로가기",
+    linkItems = [],
+    activeLinkIndex = 0,
+  } = lnbProps;
+
+  const { hasFooter = true } = footerProps;
 
   const handleAsideToggle = () => {
-    setIsAsideOpen((prev) => !prev);
+    setIsLnbOpen((prev) => !prev);
   };
 
-  const asideClass = ["aside", isAsideOpen ? "open" : ""].join(" ");
+  const lnbClass = ["lnb", isLnbOpen ? "open" : ""].filter(Boolean).join(" ");
 
   return (
     <div className="wrap">
-      <Header />
+      <Header
+        headerTitle={headerTitle}
+        hasAlarm={hasAlarm}
+        notificationCount={notificationCount}
+        className={headerClassName}
+      />
 
       {/* LAYOUT */}
       <div className="layout">
-        {/* ASIDE */}
-        {hasAside && (
-          <aside className={asideClass}>
-            <div className="logo_wrap">
-              <h1 className="logo">
-                <Icon name="ic_logo" size="lg" strokeColor="none" />
-                <span className="label">
-                  WON-SHOT
-                  <br />
-                  기업리포트
-                </span>
-              </h1>
-
+        {/* LNB */}
+        {hasLnb && (
+          <aside className={lnbClass}>
+            {!hideToggleButton && (
               <Button
                 variant="normal"
                 className="btn_toggle"
                 onClick={handleAsideToggle}
               >
-                <span className="sr_only">토글</span>
+                <span className="sr_only">
+                  {isLnbOpen ? "LNB 메뉴 열림" : "LNB 메뉴 닫힘"}
+                </span>
               </Button>
-            </div>
+            )}
 
             {/* NAV */}
             <nav className="nav">
-              <ul className="nav_menu">
-                {asideMenuItems.map((item, index) => {
-                  const isActive = asideActiveMenuIndex === index;
+              {menuItems.length > 0 && (
+                <ul className="nav_menu">
+                  {menuItems.map((item, index) => {
+                    const isActive = activeMenuIndex === index;
 
-                  const itemClass = [
-                    "nav_menu_item",
-                    isActive ? "active" : "",
-                  ].join(" ");
+                    return (
+                      <li
+                        key={item.key}
+                        className={`nav_menu_item ${isActive ? "active" : ""}`}
+                      >
+                        <Button variant="normal" onClick={item.onClick}>
+                          <Icon
+                            name={item.iconName}
+                            size="md"
+                            strokeColor="none"
+                            fillColor="none"
+                            className="nav_icon"
+                          />
+                          <span className="label">{item.label}</span>
+                        </Button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
 
-                  return (
-                    <li key={item.key} className={itemClass}>
-                      <Button variant="normal" onClick={item.onClick}>
-                        <Icon
-                          name={item.iconName}
-                          size="md"
-                          strokeColor="none"
-                          fillColor="none"
-                          className="nav_icon"
-                        />
-                        <span className="label">{item.label}</span>
-                      </Button>
-                    </li>
-                  );
-                })}
-              </ul>
+              {linkItems.length > 0 && (
+                <div className="nav_quick_wrap">
+                  <p className="nav_quick_title">{quickTitle}</p>
+
+                  <ul className="nav_quick_menu">
+                    {linkItems.map((item, index) => {
+                      const isActive = activeLinkIndex === index;
+
+                      return (
+                        <li
+                          key={item.key}
+                          className={`nav_menu_item ${isActive ? "active" : ""}`}
+                        >
+                          <Link to={item.url} onClick={item.onClick}>
+                            <span className="label">{item.label}</span>
+                            <Icon name="ic-outlink" size="xs" />
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              )}
             </nav>
           </aside>
         )}
 
         {/* MAIN */}
-        <main className="container">{children}</main>
-      </div>
+        <main className="container">
+          {children}
 
-      {/* FOOTER (optional) */}
-      {hasFooter && <Footer />}
+          {/* FOOTER */}
+          {hasFooter && <Footer />}
+        </main>
+      </div>
     </div>
   );
 };

@@ -1,10 +1,13 @@
 import React from "react";
-import "./Footer.scss";
+import { Icon } from "../../common/icons/Icon";
 
 const Footer = ({ className = "" }) => {
   return (
     <footer className={`footer ${className}`}>
-      <p>Footer Type 1</p>
+      <p>
+        <Icon name={"ic-footer-logo"} />
+        COPYRIGHTS WOORI BANK. ALL RIGHTS RESERVED.
+      </p>
     </footer>
   );
 };

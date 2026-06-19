@@ -1,9 +1,9 @@
 import React from "react";
-import "./ContentsWrapper.scss";
 
 export const ContentsWrapper = ({
   layout = "full",
   columns,
+  title,
   className = "",
   children,
 }) => {
@@ -17,5 +17,10 @@ export const ContentsWrapper = ({
     .filter(Boolean)
     .join(" ");
 
-  return <div className={finalClassName}>{children}</div>;
+  return (
+    <div className={finalClassName}>
+      {title && <h2 className="contents_title">{title}</h2>}
+      {children}
+    </div>
+  );
 };

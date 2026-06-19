@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import GuidePage from "./pages/guide";
 import TaskList from "./pages/guide/workLists";
+import Test from "./pages/pub/Test";
 import "./assets/styles/main.scss";
 
 // 🔹 레이아웃을 조건부로 제어하기 위한 내부 컴포넌트 분리
@@ -16,11 +17,13 @@ function AppContent() {
 
   // 현재 주소가 '/guide'로 시작하는지 체크 (가이드 페이지 여부)
   const isGuidePage = location.pathname.startsWith("/guide");
+  const isPubPage = location.pathname.startsWith("/pub");
+  const hideGnb = isGuidePage || isPubPage;
 
   return (
     <>
       {/* 1. 가이드 페이지가 아닐 때만 상단 GNB 노출 */}
-      {!isGuidePage && (
+      {!hideGnb && (
         <nav className="gnb">
           <div className="gnb_container">
             <div className="gnb_logo">
@@ -42,6 +45,7 @@ function AppContent() {
         <Routes>
           <Route path="/guide" element={<GuidePage />} />
           <Route path="/guide/work-list" element={<TaskList />} />
+          <Route path="/pub/Test" element={<Test />} />
         </Routes>
       </main>
     </>
