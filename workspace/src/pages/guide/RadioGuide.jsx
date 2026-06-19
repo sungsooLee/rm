@@ -2,42 +2,29 @@ import React, { useState } from "react";
 import { Radio, RadioGroup } from "../../assets/components/common/radio/Radio";
 
 const RadioGuide = () => {
-  const [activeDirection, setActiveDirection] = useState("horizontal");
-  const [groupValue, setGroupValue] = useState("apple");
-  const [singleChecked, setSingleChecked] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
 
   const sampleOptions = [
-    { value: "apple", label: "사과" },
-    { value: "banana", label: "바나나" },
+    { value: "apple", label: "사과", checked: true },
+    { value: "banana", label: "바나나", disabled: true },
     { value: "orange", label: "오렌지" },
   ];
 
   const currentCode = `// 1. 단일 항목 단독 노출 시 (독립 사용)
-const [singleChecked, setSingleChecked] = useState(false);
-
 <Radio
   name="agree"
   value="Y"
   label="개인정보 수집에 동의합니다."
-  checked={singleChecked}
-  onChange={(val) => setSingleChecked(!singleChecked)}
+  checked={true}
 />
 
 // 2. 여러 개 배열 그룹 노출 시 (RadioGroup에 options 주입)
-const [groupValue, setGroupValue] = useState("apple");
-
 <RadioGroup
-  name="fruits"
-  direction="${activeDirection}"
   options={[
-    { value: "apple", label: "사과" },
-    { value: "banana", label: "바나나" },
+    { value: "apple", label: "사과", checked: true },
+    { value: "banana", label: "바나나", disabled: true },
     { value: "orange", label: "오렌지" }
   ]}
-  value={groupValue}
-  onChange={setGroupValue}
-  disabled={${isDisabled}}
 />`;
 
   const handleCopy = () => {
@@ -76,12 +63,7 @@ const [groupValue, setGroupValue] = useState("apple");
                 Radio Group Example
               </h4>
               <RadioGroup
-                name="guide_fruits"
-                direction={activeDirection}
                 options={sampleOptions}
-                value={groupValue}
-                onChange={setGroupValue}
-                disabled={isDisabled}
               />
             </div>
 
@@ -99,8 +81,7 @@ const [groupValue, setGroupValue] = useState("apple");
                 name="guide_agree"
                 value="Y"
                 label="개인정보 수집 및 이용 약관에 동의합니다."
-                checked={singleChecked}
-                onChange={() => setSingleChecked(!singleChecked)}
+                checked={true}
                 disabled={isDisabled}
               />
             </div>
@@ -108,48 +89,12 @@ const [groupValue, setGroupValue] = useState("apple");
 
           <div className="sb-canvas-controls">
             <div className="control-field">
-              <label>Group Direction</label>
-              <select
-                value={activeDirection}
-                onChange={(e) => setActiveDirection(e.target.value)}
-              >
-                <option value="horizontal">horizontal (가로)</option>
-                <option value="vertical">vertical (세로)</option>
-              </select>
-            </div>
-            <div className="control-field">
-              <label>Disabled (전체 비활성화)</label>
+              <label>Single Disabled</label>
               <input
                 type="checkbox"
                 checked={isDisabled}
                 onChange={(e) => setIsDisabled(e.target.checked)}
               />
-            </div>
-            <div className="control-field">
-              <label>Group Value</label>
-              <span
-                className="sb-value-display"
-                style={{
-                  fontSize: "1.3rem",
-                  fontWeight: "bold",
-                  color: "#1ea7fd",
-                }}
-              >
-                "{groupValue}"
-              </span>
-            </div>
-            <div className="control-field">
-              <label>Single Checked</label>
-              <span
-                className="sb-value-display"
-                style={{
-                  fontSize: "1.3rem",
-                  fontWeight: "bold",
-                  color: "#1ea7fd",
-                }}
-              >
-                {singleChecked ? "true" : "false"}
-              </span>
             </div>
           </div>
         </div>
@@ -192,7 +137,7 @@ const [groupValue, setGroupValue] = useState("apple");
                 <td className="prop-name">checked</td>
                 <td className="prop-type">boolean</td>
                 <td>false</td>
-                <td>해당 단일 라디오의 활성화 선택 상태 값입니다.</td>
+                <td>초기 선택 상태입니다. onChange 없이 사용하면 내부에서 상태를 관리합니다.</td>
               </tr>
               <tr>
                 <td className="prop-name">onChange</td>
@@ -227,16 +172,13 @@ const [groupValue, setGroupValue] = useState("apple");
               <tr>
                 <td className="prop-name">options</td>
                 <td className="prop-type">
-                  array&lt;&#123; value, label, disabled? &#125;&gt;
+                  array&lt;&#123; value, label, checked?, disabled? &#125;&gt;
                 </td>
                 <td>[]</td>
-                <td>라디오 그룹을 렌더링할 데이터 배열입니다.</td>
-              </tr>
-              <tr>
-                <td className="prop-name">direction</td>
-                <td className="prop-type">'horizontal' | 'vertical'</td>
-                <td>'horizontal'</td>
-                <td>내부 자식 노드들의 정렬 레이아웃 방향을 정의합니다.</td>
+                <td>
+                  라디오 그룹을 렌더링할 데이터 배열입니다. checked로 초기
+                  선택 상태를, disabled로 비활성화를 지정할 수 있습니다.
+                </td>
               </tr>
               <tr>
                 <td className="prop-name">name</td>
@@ -260,12 +202,6 @@ const [groupValue, setGroupValue] = useState("apple");
                   선택 상태 변경 시 이를 감지해 상태를 업데이트하는 콜백
                   함수입니다.
                 </td>
-              </tr>
-              <tr>
-                <td className="prop-name">disabled</td>
-                <td className="prop-type">boolean</td>
-                <td>false</td>
-                <td>그룹 내 모든 라디오를 일괄 비활성화합니다.</td>
               </tr>
             </tbody>
           </table>

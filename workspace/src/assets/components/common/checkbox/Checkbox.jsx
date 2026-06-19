@@ -1,32 +1,42 @@
 import React, { useId, useState } from "react";
 import "./Checkbox.scss";
 
+const getInitialValues = (options) =>
+  options.filter((option) => option.checked).map((option) => option.value);
+
 export const CheckboxGroup = ({
   options = [],
-  direction = "horizontal",
-  value = [],
+  value,
   onChange,
-  disabled = false,
   className = "",
 }) => {
+  const isControlled = onChange !== undefined;
+  const [internalValue, setInternalValue] = useState(() =>
+    getInitialValues(options),
+  );
+  const groupValue = isControlled ? (value ?? []) : internalValue;
   const handleGroupChange = (checked, itemValue) => {
-    if (checked) {
-      onChange?.([...value, itemValue]);
+    const next = checked
+      ? [...groupValue, itemValue]
+      : groupValue.filter((item) => item !== itemValue);
+
+    if (isControlled) {
+      onChange(next);
     } else {
-      onChange?.(value.filter((item) => item !== itemValue));
+      setInternalValue(next);
     }
   };
 
   return (
-    <div className={`checkbox_group dir_${direction} ${className}`.trim()}>
+    <div className={`checkbox_group ${className}`.trim()}>
       {options.map((option) => (
         <Checkbox
           key={option.value}
           value={option.value}
           label={option.label}
-          checked={value.includes(option.value)}
+          checked={groupValue.includes(option.value)}
           onChange={handleGroupChange}
-          disabled={option.disabled || disabled}
+          disabled={option.disabled}
         />
       ))}
     </div>
@@ -44,8 +54,8 @@ export const Checkbox = ({
 }) => {
   const generatedId = useId();
   const inputId = id ?? generatedId;
-  const [internalChecked, setInternalChecked] = useState(false);
-  const isControlled = checked !== undefined;
+  const isControlled = onChange !== undefined;
+  const [internalChecked, setInternalChecked] = useState(() => checked ?? false);
   const isChecked = isControlled ? (checked ?? false) : internalChecked;
 
   const handleChange = (e) => {

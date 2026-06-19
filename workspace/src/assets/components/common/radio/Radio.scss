@@ -1,16 +1,7 @@
 .radio_group {
   display: inline-flex;
+  align-items: center;
   gap: 16px;
-
-  &.dir_horizontal {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  &.dir_vertical {
-    flex-direction: column;
-    align-items: flex-start;
-  }
 }
 
 .radio_wrap {
