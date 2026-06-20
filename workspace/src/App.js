@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import GuidePage from "./pages/guide";
 import TaskList from "./pages/guide/workLists";
-import Test from "./pages/pub/Test";
+import SamplePage from "./pages/pub/SamplePage";
 import "./assets/styles/main.scss";
 
 // 🔹 레이아웃을 조건부로 제어하기 위한 내부 컴포넌트 분리
@@ -45,7 +45,7 @@ function AppContent() {
         <Routes>
           <Route path="/guide" element={<GuidePage />} />
           <Route path="/guide/work-list" element={<TaskList />} />
-          <Route path="/pub/Test" element={<Test />} />
+          <Route path="/pub/SamplePage" element={<SamplePage />} />
         </Routes>
       </main>
     </>

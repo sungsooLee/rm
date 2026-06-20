@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Icon, iconMap } from "../../assets/components/common/icons/Icon";
+import { Icon, iconMap } from "../../assets/components/common/icon/Icon";
 import "./index.scss";
 
 const IconGuide = () => {

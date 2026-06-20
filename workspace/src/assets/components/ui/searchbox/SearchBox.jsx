@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./SearchBox.scss";
 import { Button } from "../../common/button/Button";
-import { Icon } from "../../common/icons/Icon";
+import { Icon } from "../../common/icon/Icon";
 
 export const SearchBox = ({
   className,

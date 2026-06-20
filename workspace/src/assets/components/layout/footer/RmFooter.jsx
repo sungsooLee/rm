@@ -1,7 +1,7 @@
 import React from "react";
-import { Icon } from "../../common/icons/Icon";
+import { Icon } from "../../common/icon/Icon";
 
-const Footer = ({ className = "" }) => {
+const RmFooter = ({ className = "" }) => {
   return (
     <footer className={`footer ${className}`}>
       <p>
@@ -12,4 +12,4 @@ const Footer = ({ className = "" }) => {
   );
 };
 
-export default Footer;
+export default RmFooter;

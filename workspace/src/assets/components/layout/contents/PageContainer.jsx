@@ -1,13 +1,13 @@
 import React from "react";
 
-export const ContentsWrapper = ({
+export const PageContainer = ({
   layout = "full",
   columns,
   title,
   className = "",
   children,
 }) => {
-  const baseClass = "contents_wrapper";
+  const baseClass = "page_container";
 
   const layoutClass = layout ? layout : "";
 

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import Header from "./header/Header";
-import Footer from "./footer/Footer";
+import RmHeader from "./header/RmHeader";
+import RmFooter from "./footer/RmFooter";
 import { Button } from "../common/button/Button";
-import { Icon } from "../common/icons/Icon";
+import { Icon } from "../common/icon/Icon";
 
-const Layout = ({
+const RmLayout = ({
   headerProps = {},
   lnbProps = {},
   footerProps = {},
@@ -41,7 +41,7 @@ const Layout = ({
 
   return (
     <div className="wrap">
-      <Header
+      <RmHeader
         headerTitle={headerTitle}
         hasAlarm={hasAlarm}
         notificationCount={notificationCount}
@@ -125,11 +125,11 @@ const Layout = ({
           {children}
 
           {/* FOOTER */}
-          {hasFooter && <Footer />}
+          {hasFooter && <RmFooter />}
         </main>
       </div>
     </div>
   );
 };
 
-export default Layout;
+export default RmLayout;

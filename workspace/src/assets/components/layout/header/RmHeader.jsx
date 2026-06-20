@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../../common/button/Button";
-import { Icon } from "../../common/icons/Icon";
+import { Icon } from "../../common/icon/Icon";
 import cn from "classnames";
 
-const Header = ({
+const RmHeader = ({
   headerTitle,
   hasAlarm = false,
   notificationCount = 0,
@@ -57,4 +57,4 @@ const Header = ({
   );
 };
 
-export default Header;
+export default RmHeader;

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Layout from "../../assets/components/layout/Layout";
-import { ContentsWrapper } from "../../assets/components/layout/contents/ContentsWrapper";
+import RmLayout from "../../assets/components/layout/RmLayout";
+import { PageContainer } from "../../assets/components/layout/contents/PageContainer";
 
-const Test = () => {
+const SamplePage = () => {
   const [activeMenuIndex, setActiveMenuIndex] = useState(0);
   const [activeLinkIndex, setActiveLinkIndex] = useState(1);
 
@@ -84,7 +84,7 @@ const Test = () => {
     },
   ];
   return (
-    <Layout
+    <RmLayout
       headerProps={{
         headerTitle: "RM 영업지원 포탈",
         hasAlarm: true,
@@ -103,11 +103,11 @@ const Test = () => {
         hasFooter: true,
       }}
     >
-      <ContentsWrapper layout={"center"} title={"명동금융센터"}>
+      <PageContainer layout={"center"} title={"명동금융센터"}>
         <div>111</div>
-      </ContentsWrapper>
-    </Layout>
+      </PageContainer>
+    </RmLayout>
   );
 };
 
-export default Test;
+export default SamplePage;

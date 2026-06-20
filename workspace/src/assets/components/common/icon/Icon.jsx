@@ -21,8 +21,8 @@ export const Icon = ({
   name,
   size = "md",
   className = "",
-  fillColor, // 💡 기본값 삭제 (undefined일 때 로직 타지 않음)
-  strokeColor, // 💡 기본값 삭제
+  fillColor,
+  strokeColor,
   ...props
 }) => {
   const iconSrc = iconMap[name];
@@ -39,7 +39,6 @@ export const Icon = ({
           .replace(/width="[^"\r\n]*"/i, `width="${iconSize}"`)
           .replace(/height="[^"\r\n]*"/i, `height="${iconSize}"`);
 
-        // 💡 props로 전달된 경우에만 치환 수행
         if (fillColor) {
           processedSvg = processedSvg.replace(
             /fill="[^"\r\n]*"/gi,
