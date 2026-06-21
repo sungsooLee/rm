@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import RmLayout from "../../assets/components/layout/RmLayout";
 import { PageContainer } from "../../assets/components/layout/contents/PageContainer";
 
-const RmLayoutPage = ({ title, children }) => {
+const RmLayoutPage = ({ layout, title, children }) => {
   const [activeMenuIndex, setActiveMenuIndex] = useState(0);
   const [activeLinkIndex, setActiveLinkIndex] = useState(1);
 
@@ -103,9 +103,7 @@ const RmLayoutPage = ({ title, children }) => {
         hasFooter: true,
       }}
     >
-      <PageContainer layout={"center"} title={"title"}>
-        {children}
-      </PageContainer>
+      <PageContainer title={"title"}>{children}</PageContainer>
     </RmLayout>
   );
 };

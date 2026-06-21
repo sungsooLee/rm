@@ -1,24 +1,24 @@
 import React from "react";
+import cn from "classnames";
 
 export const PageContainer = ({
-  layout = "full",
+  layout = "center", // center , column
   columns,
   title,
-  className = "",
+  className,
   children,
 }) => {
-  const baseClass = "page_container";
-
-  const layoutClass = layout ? layout : "";
-
-  const columnClass = layout === "column" && columns ? `col_${columns}` : "";
-
-  const finalClassName = [baseClass, layoutClass, columnClass, className]
-    .filter(Boolean)
-    .join(" ");
-
   return (
-    <div className={finalClassName}>
+    <div
+      className={cn(
+        "page_container",
+        layout,
+        {
+          [`col_${columns}`]: layout === "column" && columns,
+        },
+        className,
+      )}
+    >
       {title && <h2 className="contents_title">{title}</h2>}
       {children}
     </div>
