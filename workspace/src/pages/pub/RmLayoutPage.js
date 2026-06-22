@@ -103,7 +103,9 @@ const RmLayoutPage = ({ layout, title, children }) => {
         hasFooter: true,
       }}
     >
-      <PageContainer title={"title"}>{children}</PageContainer>
+      <PageContainer layout={layout} title={title}>
+        {children}
+      </PageContainer>
     </RmLayout>
   );
 };
