@@ -129,7 +129,11 @@ const TaskList = () => {
 
                   <td>
                     {item.pageLink && (
-                      <Link to={item.pageLink} className="task-link">
+                      <Link
+                        to={item.pageLink}
+                        className="task-link"
+                        target="_blank"
+                      >
                         {item.pageLink}
                       </Link>
                     )}
