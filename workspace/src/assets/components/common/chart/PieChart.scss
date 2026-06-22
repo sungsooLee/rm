@@ -1,0 +1,83 @@
+.pieChart {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  .pieChartArea {
+    position: relative;
+
+    svg {
+      display: block;
+    }
+  }
+
+  .pieSegment {
+    cursor: pointer;
+  }
+
+  .pieTooltip {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-300);
+    border-radius: 8px;
+    box-shadow: var(--shadow-normal);
+    white-space: nowrap;
+    z-index: 1;
+  }
+
+  .pieTooltipText {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-gray-800);
+  }
+
+  .pieTooltipClose {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--color-gray-500);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-gray-800);
+    }
+  }
+
+  .pieLegend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pieLegendItem {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--color-gray-700);
+  }
+
+  .pieLegendDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+}
