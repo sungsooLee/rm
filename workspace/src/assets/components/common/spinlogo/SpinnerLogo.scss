@@ -1,0 +1,22 @@
+.spinner_logo {
+  display: inline-flex;
+}
+
+.spin_ring {
+  transform-box: view-box;
+  transform-origin: center;
+}
+
+.spin_ring_infinite {
+  animation: spinnerRotate 2s linear infinite;
+}
+
+.spin_ring_once {
+  animation: spinnerRotate 1.5s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes spinnerRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
