@@ -55,7 +55,9 @@ export const Checkbox = ({
   const generatedId = useId();
   const inputId = id ?? generatedId;
   const isControlled = onChange !== undefined;
-  const [internalChecked, setInternalChecked] = useState(() => checked ?? false);
+  const [internalChecked, setInternalChecked] = useState(
+    () => checked ?? false,
+  );
   const isChecked = isControlled ? (checked ?? false) : internalChecked;
 
   const handleChange = (e) => {
@@ -84,19 +86,7 @@ export const Checkbox = ({
           className="input"
           onChange={handleChange}
         />
-        <span className="box" aria-hidden="true">
-          <span className="icon">
-            <svg viewBox="0 0 12 10" fill="none">
-              <path
-                d="M1 5L4.5 8.5L11 1"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-        </span>
+        <span className="box" aria-hidden="true"></span>
         {label && <span className="label">{label}</span>}
       </label>
     </div>

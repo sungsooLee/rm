@@ -31,6 +31,7 @@
 
   /* box */
   .box {
+    overflow: hidden;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -41,7 +42,8 @@
 
     border: 1px solid var(--color-gray-300);
     border-radius: 4px;
-    background-color: var(--color-white);
+    background: var(--color-white) url(../../../icons/ic_checkbox_default.svg)
+      center center / 20px auto no-repeat;
 
     transition:
       background-color 0.2s ease,
@@ -60,27 +62,6 @@
     transform: scale(0.96);
   }
 
-  /* icon (SVG check) */
-  .icon {
-    width: 12px;
-    height: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    path {
-      stroke-dasharray: 20;
-      stroke-dashoffset: 20;
-
-      transition: stroke-dashoffset 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-  }
-
   .label {
     font-size: 13px;
     line-height: 150%;
@@ -91,7 +72,9 @@
   &.checked {
     .box {
       border-color: var(--color-pri-600);
-      background-color: var(--color-pri-600);
+      background: var(--color-pri-600)
+        url(../../../icons/ic_checkbox_checked.svg) center center / 20px auto
+        no-repeat;
     }
 
     .icon path {
@@ -108,7 +91,9 @@
 
     .box {
       border-color: var(--color-gray-300);
-      background-color: var(--color-gray-100);
+      background: var(--color-gray-100)
+        url(../../../icons/ic_checkbox_disabled.svg) center center / 20px auto
+        no-repeat;
       transform: none;
     }
 
@@ -123,8 +108,10 @@
 
     &.checked {
       .box {
-        border-color: var(--color-gray-300);
-        background-color: var(--color-gray-300);
+        border: 0;
+        background: transparent
+          url(../../../icons/ic_checkbox_checked_disabled.svg) center center /
+          20px auto no-repeat;
       }
     }
   }

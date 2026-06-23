@@ -56,7 +56,9 @@ export const Radio = ({
   const generatedId = useId();
   const inputId = id ?? generatedId;
   const isControlled = onChange !== undefined;
-  const [internalChecked, setInternalChecked] = useState(() => checked ?? false);
+  const [internalChecked, setInternalChecked] = useState(
+    () => checked ?? false,
+  );
   const isChecked = isControlled ? (checked ?? false) : internalChecked;
 
   const handleChange = (event) => {
@@ -88,9 +90,7 @@ export const Radio = ({
           className="radio_input"
           onChange={handleChange}
         />
-        <span className="radio_box" aria-hidden="true">
-          <span className="radio_icon" />
-        </span>
+        <span className="radio_box" aria-hidden="true"></span>
         {label && <span className="radio_text">{label}</span>}
       </label>
     </div>
