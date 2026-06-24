@@ -1,11 +1,18 @@
 .spinner_logo {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    display: block;
+  }
 }
 
 .spin_ring {
-  transform-box: view-box;
   transform-origin: center;
+  transform-box: fill-box;
   will-change: transform;
+  backface-visibility: hidden;
 }
 
 .spin_ring_infinite {
@@ -17,6 +24,10 @@
 }
 
 @keyframes spinnerRotate {
+  from {
+    transform: rotate(0deg);
+  }
+
   to {
     transform: rotate(360deg);
   }
@@ -26,6 +37,7 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(720deg);
   }
